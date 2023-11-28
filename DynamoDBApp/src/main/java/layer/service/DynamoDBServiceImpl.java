@@ -87,6 +87,7 @@ public class DynamoDBServiceImpl implements DynamoDBService {
         if (existingUser != null) {
             User inputuser = new Gson().fromJson(inputBody, User.class);
             updateUsersNotNullAttributes(existingUser,inputuser);
+            dynamoDBMapper.save(existingUser);
             return getJsonResponse("User was updated");
         } else {
             return getJsonResponse("User not found");
